@@ -17,9 +17,16 @@ const typeDefs = gql`
         title: String!
     }
 
+    input BookInput {
+
+    }
+
+    type Auth {
+
+    }
+
     type Query {
         user: [User]
-        book: [Book]
     }
 `;
 
