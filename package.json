@@ -1,5 +1,5 @@
 {
-  "name": "googlebooks-app",
+  "name": "so-merny-books-searcher",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -16,10 +16,10 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "nodemon": "^2.0.15",
-    "apollo-server-express": "^2.19.0",
+    "apollo-server-express": "^2.25.3",
     "express": "^4.17.1",
+    "graphql": "^15.8.0",
     "mongoose": "^5.11.6",
-    "graphql": "^15.5.1"
+    "nodemon": "^2.0.15"
   }
 }
