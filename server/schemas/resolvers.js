@@ -6,7 +6,7 @@ const resolvers = {
     Query: {
         me: async (parents, args, context) => {
             if (context.user) {
-                const userData = await User.findOneAndDelete({ _id: context.user_id }).select(
+                const userData = await User.findOne({ _id: context.user_id }).select(
                     "-__v -password"
                 );
 
@@ -28,20 +28,32 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthError("Not a valid username");
+                throw new AuthError("Can't find this user");
             }
 
             const correctPW = await user.isCorrectPassword(password);
 
-            if (!correctPW) {
-                throw new AuthError("Not a valid password");
+            if (!correctPw) {
+                throw new AuthError("Wrong password!");
             }
 
             const token = signToken(user);
             return { token, user };
-        }
+        },
 
-        saveBook: async (parent, args, context) => {
+        saveBook: async (parents, { input }, context) => {
+            if (context.user) {
+                const updateUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { savedBooks: input }},
+                    { new: true }
+                );
+                return updateUser;
+            }
+            throw new AuthError("Couldn't find user with this id!")
+        },
+
+        removeBook: async (parent, args, context) => {
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user_id },
@@ -50,7 +62,7 @@ const resolvers = {
                 );
                 return updatedUser;
             }
-            throw new AuthError("Please log in!");
+            throw new AuthError("Couldn't find user with this id!");
         }
     }
 };
