@@ -31,7 +31,7 @@ const resolvers = {
                 throw new AuthError("Can't find this user");
             }
 
-            const correctPW = await user.isCorrectPassword(password);
+            const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
                 throw new AuthError("Wrong password!");
@@ -41,11 +41,11 @@ const resolvers = {
             return { token, user };
         },
 
-        saveBook: async (parents, { input }, context) => {
+        saveBook: async (parents, { bookData }, context) => {
             if (context.user) {
                 const updateUser = await User.findByIdAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { savedBooks: input }},
+                    { $push: { savedBooks: bookData }},
                     { new: true }
                 );
                 return updateUser;
@@ -53,11 +53,11 @@ const resolvers = {
             throw new AuthError("Couldn't find user with this id!")
         },
 
-        removeBook: async (parent, args, context) => {
+        removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
                 const updatedUser = await User.findByIdAndUpdate(
                     { _id: context.user_id },
-                    { $pull: { savedBooks: { bookId: args.bookId }}},
+                    { $pull: { savedBooks: {bookId} } },
                     { new: true }
                 );
                 return updatedUser;
