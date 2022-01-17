@@ -1,6 +1,7 @@
 {
   "name": "so-merny-books-searcher",
   "version": "1.0.0",
+  "homepage": "https://so-merny-books.herokuapp.com/",
   "description": "",
   "main": "server/server.js",
   "proxy": "http://localhost:3001",
