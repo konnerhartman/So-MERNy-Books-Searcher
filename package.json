@@ -16,19 +16,5 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0"
-  },
-  "dependencies": {
-    "react": "^16.13.1",
-    "@apollo/react-hooks": "^4.0.0",
-    "apollo-server-express": "^2.25.3",
-    "apollo-boost": "^0.4.9",
-    "express": "^4.17.1",
-    "graphql": "^15.8.0",
-    "mongoose": "^5.11.6",
-    "nodemon": "^2.0.15",
-    "jwt-decode": "^2.2.0",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.1"
   }
 }
