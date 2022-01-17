@@ -40,7 +40,7 @@
   ## Links
   Deployed Link:
   </br>
-  * 
+  * https://so-merny-books.herokuapp.com/
   </br>
 
   GitHub Repository:
